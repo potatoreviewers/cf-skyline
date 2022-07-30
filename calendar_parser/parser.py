@@ -28,6 +28,6 @@ class CalendarParser:
         if close_bracket_id == -1:
             raise Exception("Error: Could not find closing bracket")
 
-        script = html[open_bracket_id:close_bracket_id + 1]
+        script = html[open_bracket_id:close_bracket_id + 1].replace("items", "\"items\"")
 
         return script
