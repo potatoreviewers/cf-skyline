@@ -11,7 +11,7 @@ username parameter is required
 
 **Example** 
 
-request: `/user_activity_graph?username=muratmurat'
+request: `/user_activity_graph?username=muratmurat`
 
 response: 
 ```json
