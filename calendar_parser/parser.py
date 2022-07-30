@@ -1,3 +1,5 @@
+import json
+
 class CalendarParser:
     def __init__(self):
         pass
@@ -26,6 +28,9 @@ class CalendarParser:
         if close_bracket_id == -1:
             raise Exception("Error: Could not find closing bracket")
 
-        script = html[open_bracket_id:close_bracket_id + 1].replace("items", "\"items\"")
+        data = json.loads(html[open_bracket_id:close_bracket_id + 1].replace("items", "\"items\""))
+        for day in data:
+            data[day] = data[day]['items'][0]
 
-        return script
+        return data
+

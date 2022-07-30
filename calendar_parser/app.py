@@ -3,26 +3,44 @@ from aiohttp import ClientSession
 
 from calendar_parser import CalendarParser
 
+async def user_activity_json(username):
+    parser = CalendarParser()
+
+    async with ClientSession() as session:
+        async with session.get(f"https://codeforces.com/api/user.info?handles={username}") as response:
+            if response.status != 200:
+                return None
+            
+            async with session.get(f"https://codeforces.com/profile/{username}") as response:
+                if response.status != 200:
+                    return None
+                html = await response.text()
+                try:
+                    return parser.parse_html(html)
+                except Exception as e:
+                    print(e)
+                    return None
+
 async def user_activity_graph(request):
     username = request.query.get('username')
     if not username:
         return web.Response(text="No username specified")
 
-    base_url = "https://codeforces.com"
+    data = await user_activity_json(username)
+    res = {
+        'status': 'ok',
+    }
 
-    parser = CalendarParser()
+    status_code = 200
+    if not data:
+        res['status'] = 'error'
+        res['message'] = 'Could not find user'
+        status_code = 404
 
-    async with ClientSession() as session:
-        async with session.get(f"{base_url}/api/user.info?handles={username}") as response:
-            if response.status != 200:
-                return web.Response(text="Error: Could not find user")
-            
-            async with session.get(f"{base_url}/profile/{username}") as response:
-                if response.status != 200:
-                    return web.Response(text="Error: Could not find user")
-                html = await response.text()
-                json_string = parser.parse_html(html)
-                return web.Response(text=json_string, content_type="application/json")
+    else:
+        res['data'] = data
+
+    return web.json_response(res, status=status_code)
 
 def create_app():
     app = web.Application()
