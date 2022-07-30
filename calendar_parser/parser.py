@@ -1,5 +1,3 @@
-from requests import get
-
 class CalendarParser:
     def __init__(self):
         pass

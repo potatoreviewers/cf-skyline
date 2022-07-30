@@ -1,5 +1,3 @@
-import asyncio
-
 from aiohttp.web import run_app
 from calendar_parser.app import create_app
 
