@@ -24,7 +24,7 @@ async def user_activity_json(username):
 async def user_activity_graph(request):
     username = request.query.get('username')
     if not username:
-        return web.Response(text="No username specified")
+        return web.Response(text="No username specified", status=400)
 
     data = await user_activity_json(username)
     res = {
