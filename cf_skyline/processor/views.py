@@ -16,6 +16,6 @@ def ActivityDict(request):
         if (data!=None):
             return Response(data, status=HTTP_200_OK)
         else:
-            return Response('Invalud username', status=HTTP_400_BAD_REQUEST)
+            return Response('Invalid username', status=HTTP_400_BAD_REQUEST)
     else:
-        return Response('Invalud username', status=HTTP_400_BAD_REQUEST)
+        return Response('Invalid username', status=HTTP_400_BAD_REQUEST)
