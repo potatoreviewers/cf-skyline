@@ -44,7 +44,7 @@ class TowerBuilder:
         for day in data:
             self._add_date(day, data[day])
         
-    def build(self, data: dict, output_file=os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/towers.stl')):
+    def build(self, data: dict, output_file='towers.stl'):
         self._add_dates(data)
 
         if len(self.towers) == 0:
