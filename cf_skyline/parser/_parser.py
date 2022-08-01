@@ -36,7 +36,7 @@ class CalendarParser:
 
         return data
 
-    async def user_activity_json(self, username):
+    async def user_activity_dict(self, username):
         parser = CalendarParser()
 
         async with ClientSession() as session:
