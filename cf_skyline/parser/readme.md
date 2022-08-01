@@ -9,11 +9,11 @@ Parser that fetches user activity from codeforces and converts it to json format
 This module provides class `cf_skyline.CalendarParser` that has following methods:
 
 
-## parse_html
+## CalendarParser.parse_html
 
 Takes html string as an argument and returns dictionary that maps user activity integer to each day represented as string
 
 
-## user_activity_json
+## CalendarParser.user_activity_json
 
 This method sends GET request to codeforces to get html for username specified in method's argument
