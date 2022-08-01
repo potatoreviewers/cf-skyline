@@ -10,9 +10,12 @@ import asyncio
 
 @api_view(['GET'])
 def ActivityDict(request):
-    username = request.data.get('username')
-    data = asyncio.run(CalendarParser.user_activity_dict(username))
-    if (data!=None):
-        return Response(data, status=HTTP_200_OK)
+    if (request.data.get('username')):
+        username = request.data.get('username')
+        data = asyncio.run(CalendarParser.user_activity_dict(username))
+        if (data!=None):
+            return Response(data, status=HTTP_200_OK)
+        else:
+            return Response('Invalud username', status=HTTP_400_BAD_REQUEST)
     else:
         return Response('Invalud username', status=HTTP_400_BAD_REQUEST)
