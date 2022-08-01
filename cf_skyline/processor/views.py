@@ -30,7 +30,7 @@ def STLLink(request):
         data = asyncio.run(CalendarParser.user_activity_dict(username))
         if (data!=None):
             username_file_name = converter.Converter._generate_text(username)
-            year_file_name = converter.Converter._generate_year(year)
+            year_file_name = converter.Converter._generate_text(year)
             # towers script
             jsn = {
                 "name" : os.path.join(MEDIA_ROOT, username_file_name),

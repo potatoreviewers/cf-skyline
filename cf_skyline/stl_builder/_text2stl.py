@@ -40,14 +40,4 @@ class Converter:
         os.system("openscad {} -o {}".format(os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile), os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/', stlfile)))
 
         return stlfile 
-
-    def _generate_year(year):
-        a = Converter.assembly(year)
-
-        outfile = '{}.{}'.format(year + '_' + uuid4().hex, 'scad')
-        stlfile = '{}.{}'.format(year + '_' + uuid4().hex, 'stl')
-        scad_render_to_file(a, os.path.join(Path(__file__).resolve().parent, 'scad_files/' + outfile))
         
-        os.system("openscad {} -o {}".format(os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile), os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/', stlfile)))
-
-        return stlfile
