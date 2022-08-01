@@ -4,6 +4,8 @@ import datetime as dt
 import stl
 from ._tower import Tower, Point, rect
 from cf_skyline.parser import CalendarParser
+import os
+from pathlib import Path
 
 def _to_datetime(day: str):
     return dt.datetime.strptime(day, "%Y-%m-%d")
@@ -42,12 +44,12 @@ class TowerBuilder:
         for day in data:
             self._add_date(day, data[day])
         
-    def build(self, data: dict, output_file='towers.stl'):
+    def build(self, data: dict, output_file=os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/towers.stl')):
         self._add_dates(data)
 
         if len(self.towers) == 0:
             # open empty.stl and copy to output_file
-            with open('empty.stl', 'r') as f:
+            with open(os.path.join(Path(__file__).resolve().parent, 'empty.stl'), 'r') as f:
                 with open(output_file, 'w') as f2:
                     f2.write(f.read())
             return
