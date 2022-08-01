@@ -11,9 +11,11 @@ This module provides class `cf_skyline.CalendarParser` that has following method
 
 ## CalendarParser.parse_html
 
+`parse_html(self, html)` 
 Takes html string as an argument and returns dictionary that maps user activity integer to each day represented as string
 
 
 ## CalendarParser.user_activity_json
 
+`user_activity_json(self, username)`
 This method sends GET request to codeforces to get html for username specified in method's argument
