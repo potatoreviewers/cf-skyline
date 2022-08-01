@@ -1,11 +1,12 @@
+import sys
 from random import randint
 import numpy as np
 import datetime as dt
 import stl
 from ._tower import Tower, Point, rect
-from cf_skyline.parser import CalendarParser
 import os
 from pathlib import Path
+
 
 def _to_datetime(day: str):
     return dt.datetime.strptime(day, "%Y-%m-%d")
@@ -24,7 +25,7 @@ class TowerBuilder:
         self.base = base_point
         self.width = width
         self.height = height
-        self.year = year
+        self.year = int(year)
         self.username = username
 
     def _add_date(self, date: str, height: int):
@@ -49,7 +50,7 @@ class TowerBuilder:
 
         if len(self.towers) == 0:
             # open empty.stl and copy to output_file
-            with open(os.path.join(Path(__file__).resolve().parent, 'empty.stl'), 'r') as f:
+            with open(os.path.join(Path(__file__).resolve().parent.parent, 'empty.stl'), 'r') as f:
                 with open(output_file, 'w') as f2:
                     f2.write(f.read())
             return
