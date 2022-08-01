@@ -36,8 +36,8 @@ class CalendarParser:
 
         return data
 
-    async def user_activity_dict(self, username):
-        parser = self
+    async def user_activity_dict(username):
+        parser = CalendarParser()
 
         async with ClientSession() as session:
             async with session.get(f"https://codeforces.com/api/user.info?handles={username}") as response:
