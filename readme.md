@@ -1,14 +1,19 @@
+# Codeforces skyline
+
+
+## Repository structure
+
 ```
-cf_skyline/
-├── app
-│   ├── app.py
+.
+├── cf_skyline
 │   ├── __init__.py
-│   └── __main__.py
-├── __init__.py
-├── parser
-│   ├── __init__.py
-│   ├── parser.py
-│   └── readme.md
-└── stl_builder
-    └── __init__.py
-```
+│   └── parser
+│       ├── __init__.py
+│       ├── _parser.py
+│       └── readme.md
+├── LICENSE
+├── main.py
+├── readme.md
+└── script.py
+
+```  
