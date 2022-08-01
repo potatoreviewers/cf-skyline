@@ -2,6 +2,10 @@ import os
 import numpy as np
 import json
 
+from stl import mesh
+from mpl_toolkits import mplot3d
+from matplotlib import pyplot
+
 from requests import request
 import requests
 from skyline.drawer import coordinates, to_datetime
@@ -18,7 +22,7 @@ class Point:
 def rect(p1: Point, p2: Point, p3: Point, p4: Point):
     return np.array([ 
         [p1.list(), p2.list(), p3.list()],
-        [p1.list(), p4.list(), p3.list()]
+        [p3.list(), p4.list(), p1.list()]
     ])
 
 class Tower:
@@ -58,11 +62,12 @@ class Tower:
             Point(x,   y+h, z-w),
             Point(x,   y,   z-w)
         )
+
         right = rect(
             Point(x+w, y,   z),
             Point(x+w, y+h, z),
             Point(x+w, y+h, z-w),
-            Point(x+w, y+h, z-w)
+            Point(x+w, y, z-w)
         )
 
         front = rect(
@@ -105,23 +110,25 @@ def build_stl(username, year, output_file='output.stl'):
     days = user_info['data']
     towers = []
 
+    x0, y0, z0 = 0, 0, 0
+    W, H = 53, 7
+    scale = W / 53
+    base = rect(
+        Point(x0,   y0, z0-1),
+        Point(x0+W, y0, z0-1),
+        Point(x0+W, y0, z0-1+H),
+        Point(x0,   y0, z0-1+H)
+    )
+
     for day in days:
         date = to_datetime(day)
         if date.year != year:
             continue
         x, z = coordinates(day)
-        y = 0
+        x, z = x0 + x * scale, z0 + z * scale
+        y = y0
         h = days[day]
         towers.append(Tower(Point(x, y, z), width=1, height=h))
-
-    H, W = 7, 53
-
-    base = rect(
-        Point(0, 0, -1),
-        Point(W, 0, -1),
-        Point(W, 0, H-1),
-        Point(0, 0, H-1)
-    )
 
     np_towers_triangles = np.concatenate([tower.stl() for tower in towers])
     np_towers_triangles = np.concatenate((base, np_towers_triangles))
@@ -138,8 +145,6 @@ def build_stl(username, year, output_file='output.stl'):
             f.write('   endloop\n')
             f.write('endfacet\n')
         f.write('endsolid skyline\n')
-    
-
 
 if __name__ == '__main__':
     username = 'muratmurat'
