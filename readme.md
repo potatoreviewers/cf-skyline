@@ -12,8 +12,5 @@
 │       ├── _parser.py
 │       └── readme.md
 ├── LICENSE
-├── main.py
-├── readme.md
-└── script.py
-
-```  
+└── readme.md
+```
