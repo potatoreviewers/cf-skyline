@@ -1,4 +1,5 @@
 import json
+from aiohttp import ClientSession
 
 class CalendarParser:
     def __init__(self):
@@ -14,6 +15,7 @@ class CalendarParser:
             if bracket_count == 0:
                 return i
         return -1
+
             
     def parse_html(self, html):
         s = "data: {"
@@ -34,3 +36,19 @@ class CalendarParser:
 
         return data
 
+    async def user_activity_json(self, username):
+        parser = CalendarParser()
+
+        async with ClientSession() as session:
+            async with session.get(f"https://codeforces.com/api/user.info?handles={username}") as response:
+                if response.status != 200:
+                    return None
+            
+            async with session.get(f"https://codeforces.com/profile/{username}") as response:
+                if response.status != 200:
+                    return None
+                html = await response.text()
+                try:
+                    return parser.parse_html(html)
+                except Exception as e:
+                    return None
