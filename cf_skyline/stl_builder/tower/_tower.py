@@ -1,3 +1,4 @@
+import math
 import numpy as np
 
 class Point:
@@ -28,7 +29,7 @@ class Tower:
         # width is along the x-axis and z-axis
         w = self.width
         # height is along the y-axis 
-        h = self.height
+        h = self.height * (math.log(self.height) + 1)
         
         # surface coordinates are x and z
         # x, z = coordinates(self.day)

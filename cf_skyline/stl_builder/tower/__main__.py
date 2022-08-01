@@ -2,7 +2,9 @@ import asyncio
 import datetime as dt
 from .builder import TowerBuilder
 from configargparse import ArgumentParser
+from cf_skyline.parser import CalendarParser
 
+calendar_parser = CalendarParser()
 argument_parser = ArgumentParser()
 
 argument_parser.add_argument('--username', '-u', help='codeforces username', default='tourist')
@@ -16,7 +18,8 @@ async def main():
     year = args.year
 
     builder = TowerBuilder(username, year=year)
-    await builder.build(output_file=f"/home/murat/{username}-{year}.stl")
+    data = await calendar_parser.user_activity_dict(username)
+    builder.build(data, output_file=f"{username}-{year}.stl")
 
 if __name__ == '__main__':
     asyncio.run(main())
