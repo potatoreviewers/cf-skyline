@@ -23,12 +23,15 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
+      working-directory: ./client
       run: npm install
 
     - name: Build
+      working-directory: ./client
       run: npm run build
 
     - name: Deploy
+      working-directory: ./client
       run: |
         git config --global user.name $user_name
         git config --global user.email $user_email
