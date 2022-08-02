@@ -12,7 +12,8 @@ function HomePageForm() {
         e.preventDefault();
         if (username === '') {
             
-            document.getElementById('HomePageForm').style.borderColor = 'red';
+            document.getElementById('HomePageForm').appendChild(document.createTextNode('Please enter your Codeforces handle'));
+
             return;
         }
 
