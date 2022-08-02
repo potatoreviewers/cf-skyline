@@ -18,7 +18,7 @@ async def main():
     year = args.year
 
     builder = TowerBuilder(username, year=year)
-    data = await calendar_parser.user_activity_dict(username)
+    data = await CalendarParser.user_activity_dict(username)
     builder.build(data, output_file=f"{username}-{year}.stl")
 
 if __name__ == '__main__':
