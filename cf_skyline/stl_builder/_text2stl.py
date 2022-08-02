@@ -27,4 +27,5 @@ class Converter:
         
         os.system("openscad {} -o {}".format(os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile), os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/', stlfile)))
 
+        os.remove(os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile))
         return stlfile 
