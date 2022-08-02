@@ -11,11 +11,16 @@ def _to_datetime(day: str):
     return dt.datetime.strptime(day, "%Y-%m-%d")
 
 # return surface coordinates of day
-def _coordinates(day: str):
+def week_info(day: str):
     date = _to_datetime(day)
-    days = (date - dt.datetime(date.year, 1, 1)).days
+    first = dt.datetime(date.year, 1, 1)
+    days = (date - first).days + 1
+    first_weekday = (first.weekday() + 1) % 7
+    if first_weekday != 0:
+        days += first_weekday - 1
+
     week = days // 7
-    weekday = date.weekday()
+    weekday = (date.weekday() + 1) % 7
     return (week, weekday)
 
 class TowerBuilder:
@@ -32,10 +37,10 @@ class TowerBuilder:
             return
 
         x0, y0, z0 = self.base.coords
-        week, weekday = _coordinates(date)
+        week, weekday = week_info(date)
         unit = self.width / 53
         x = x0 + week * unit
-        z = z0 - weekday * unit
+        z = z0 - (6 - weekday)%7 * unit
 
         tower = Tower(Point(x, y0, z), width=unit, height=height)
         self.towers.append(tower)
