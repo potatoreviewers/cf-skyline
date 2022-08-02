@@ -1,9 +1,6 @@
-from random import randint
 import numpy as np
 import datetime as dt
-import stl
-from ._tower import Tower, Point, rect
-from cf_skyline.parser import CalendarParser
+from ._tower import Tower, Point
 import os
 from pathlib import Path
 

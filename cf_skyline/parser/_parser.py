@@ -1,7 +1,5 @@
 import json
 import datetime as dt
-from urllib import request
-from bs4 import BeautifulSoup
 from aiohttp import ClientSession
 
 class CalendarParser:
