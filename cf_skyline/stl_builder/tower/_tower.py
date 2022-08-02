@@ -25,15 +25,18 @@ class Tower:
         self.height = height
     
     def stl(self):
+        indent = 0.2 * self.width
+
         p = self.point
         # width is along the x-axis and z-axis
-        w = self.width
+        w = self.width - indent * 2 
         # height is along the y-axis 
         h = self.height * (math.log(self.height) + 1)
         
         # surface coordinates are x and z
         # x, z = coordinates(self.day)
         x, y, z = p.coords
+        x, z = x + indent, z + indent
 
         base = rect(
             Point(x,   y,   z),
