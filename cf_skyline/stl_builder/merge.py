@@ -61,8 +61,9 @@ def merger(base_stl, name_stl, year_stl, towers_stl, username, year):
 
     #towers_init
     towers_mesh.rotate([-0.5, 0.0, 0.0], math.radians(90))
-    towers_mesh.vectors = towers_mesh.vectors * 3
-    towers_mesh.translate(translation=[4*4.5,4*4.5,4*4.5])
+    towers_mesh.vectors = towers_mesh.vectors * 2.5
+    x_shift = towers_mesh.x.min() + 65.908424 
+    towers_mesh.translate(translation=[-x_shift,-9.5,4.5])
 
     #name_init
 
