@@ -1,5 +1,5 @@
 
-function App() {
+function NotFound() {
   return (
       <div className="NotFound">
         <h1> Not found </h1>
@@ -7,4 +7,4 @@ function App() {
   );
 }
 
-export default App;
+export default NotFound;
