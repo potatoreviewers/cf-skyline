@@ -1,12 +1,11 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import HomePage from './home/HomePage';
 import UserPage from './user/UserPage';
 import NotFound from './NotFound';
 
 function App() {
   return (
-    <Router>
       <div className="App">
         <Routes>
 
@@ -18,7 +17,6 @@ function App() {
 
         </Routes>
       </div>
-    </Router>
   );
 }
 

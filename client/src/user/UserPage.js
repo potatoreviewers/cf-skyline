@@ -23,7 +23,7 @@ function UserPage() {
           }
         );
       }, 
-      [username, userpic]
+      [username, userpic, year]
     );
 
 

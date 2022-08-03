@@ -1,5 +1,6 @@
 import './HomePage.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function HomePageForm() {
     const currentYear = new Date().getFullYear();
@@ -7,6 +8,8 @@ function HomePageForm() {
     const [username, setUsername] = useState('');
     // year is wanted year of activity(from 2010 to now)
     const [year, setYear] = useState(currentYear);
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,7 +20,7 @@ function HomePageForm() {
             return;
         }
 
-        window.location.href = `/${username}/${year}`;
+        navigate(`/${username}/${year}`);
     }
 
     return (
