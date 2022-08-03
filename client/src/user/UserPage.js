@@ -1,40 +1,41 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import NotFound from './../NotFound'
 
 function UserPage() {
     const {username, year} = useParams();
 
-    const [message, setMessage] = useState('');
-    const [userpic, setUserpic] = useState();
+    const [found, setFound] = useState(true);
 
     useEffect(
       () => {
+        const yearInt = parseInt(year);
+        if (isNaN(yearInt) || yearInt < 2010 || yearInt > new Date().getFullYear()) {
+          setFound(false);
+          return;
+        }
+
         fetch(`https://codeforces.com/api/user.info?handles=${username}`)
           .then(response => response.json())
           .then(data => {
             if (data.status === 'FAILED') {
-              setMessage(data.comment);
-            }
-            else {
-              setUserpic(data.result[0].titlePhoto);
-              setMessage(`${username}'s activity in ${year}`);
+              setFound(false);
             }
           }
         );
       }, 
-      [username, userpic, year]
+      [username, year]
     );
 
 
 
-  return (
+  return found? (
       <div className="UserPage">
         <h1> Codeforces skylines </h1>
-        {userpic && <img src={userpic} alt="userpic" id="userpic" />}
-        <p> {message} </p>
+        {username}
       </div>
-  );
+  ) : NotFound();
+
 }
 
 export default UserPage;
