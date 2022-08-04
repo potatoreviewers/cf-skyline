@@ -16,7 +16,7 @@ function HomePageForm() {
         if (username === '') {
             
             // make placeholder red
-            document.getElementById('username-input').style = 'border-bottom: 1px solid red';
+            document.getElementById('username-input').style = 'border-bottom: 2px solid rgba(189, 0, 0, 0.69)';
 
             return;
         }
@@ -28,11 +28,11 @@ function HomePageForm() {
         <>
         <div id="HomePage-form-input-container">
             <form onSubmit={handleSubmit}  >
-                <input type="text" id="username-input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="codeforces handle"/>
+                <input type="text" id="username-input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="codeforces handle" autoComplete="off"/>
                 <select id="select-year"value={year} onChange={(e) => setYear(e.target.value)}>
                     {Array.from(Array(currentYear- 2010 + 1).keys()).map(i => <option key={i + 2010} value={i + 2010}>{i + 2010}</option>)}
                 </select>
-                <input type="submit" value="Submit" id="HomePage-form-input-submit"/>
+                <input type="submit" value="create" id="HomePage-form-input-submit"/>
             </form>
         </div>
         </>
