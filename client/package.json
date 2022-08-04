@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://muratsat.github.com/cf-skyline/",
+  "homepage": "https://muratsat.github.io/cf-skyline/",
   "dependencies": {
     "@react-three/fiber": "^8.2.2",
     "@testing-library/jest-dom": "^5.16.4",
