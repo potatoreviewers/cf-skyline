@@ -30,7 +30,7 @@ function UserPage() {
 
 
   return found? (
-      <div className="UserPage">
+      <div className="Page">
         <h1> Codeforces skylines </h1>
         {username}
       </div>

@@ -40,7 +40,7 @@ function HomePage() {
 
 
   return (
-      <div className="HomePage">
+      <div className="Page">
         <div className="HomePage-main">
             <div className="HomePage-main-form">
                 <h1> Your Codeforces activity story in 3D</h1>
