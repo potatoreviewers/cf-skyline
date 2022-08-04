@@ -1,4 +1,5 @@
 import json
+import datetime as dt
 from aiohttp import ClientSession
 
 class CalendarParser:
@@ -36,6 +37,10 @@ class CalendarParser:
 
         return data
 
+    def __unix_time_to_date(self, unix_time):
+        format = "%Y-%m-%d"
+        return dt.datetime.fromtimestamp(unix_time).strftime(format)
+
     async def user_activity_dict(username):
         parser = CalendarParser()
 
@@ -44,11 +49,19 @@ class CalendarParser:
                 if response.status != 200:
                     return None
             
-            async with session.get(f"https://codeforces.com/profile/{username}") as response:
+            async with session.get(f"https://codeforces.com/api/user.status?handle={username}") as response:
                 if response.status != 200:
                     return None
-                html = await response.text()
-                try:
-                    return parser.parse_html(html)
-                except Exception as e:
-                    return None
+
+                data = await response.json()
+                res = {}
+
+                for sub in data['result']:
+                    unix_time = sub['creationTimeSeconds']
+                    date_str = parser.__unix_time_to_date(unix_time)
+                    if date_str not in res:
+                        res[date_str] = 1
+                    else:
+                        res[date_str] += 1
+
+                return res
