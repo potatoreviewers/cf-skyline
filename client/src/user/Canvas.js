@@ -1,14 +1,25 @@
 // import { useRef, useEffect, Suspense } from 'react';
 import { OrbitControls } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { useRef } from 'react';
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader';
 
 const Model = () => {
-    return (
-        <mesh position={[0, 0, 0]}>
-            <torusKnotGeometry attach="geometry" args={[100, 40, 16, 16]} />
-            <meshNormalMaterial attach="material" />
-        </mesh>
-    );
+  const url = 'http://localhost:8081';
+
+  const geometry = useLoader(STLLoader, url);
+  const ref = useRef();
+
+  return (
+    <>
+      <mesh ref={ref}>
+        <primitive object={geometry} attach="geometry" />
+        <meshNormalMaterial attach="material" />
+      </mesh>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />;
+    </>
+  )
 }
 
 function CanvasComponent() {

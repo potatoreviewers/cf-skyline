@@ -127,12 +127,11 @@
 
 
 #HomePage-form-input-submit:focus {
-    font-weight: bold;
+    color:rgb(32, 147, 255);
     outline: none;
 }
 
 #HomePage-form-input-submit:hover {
     cursor: pointer;
-    /* neon text shadow */
     color:rgb(32, 147, 255);
 }

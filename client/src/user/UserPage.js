@@ -67,8 +67,7 @@ function UserPage() {
         <div className="Page">
           <div className="UserPage-info">
             <h1> 
-              <a href={`https://codeforces.com/profile/${username}`} rel="noopener noreferrer" target="_blank" >{username}</a>
-              's activity in {year} 
+              <a href={`https://codeforces.com/profile/${username}`}>{username}</a>'s activity in {year} 
             </h1>
 
 
