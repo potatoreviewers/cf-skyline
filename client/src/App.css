@@ -14,8 +14,10 @@
 
 a {
     color: rgb(180, 255, 255);
-    
     text-decoration: none;
+}
+a:hover {
+    color: rgb(0, 76, 228);
 }
 
 button {
