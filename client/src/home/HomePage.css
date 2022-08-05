@@ -85,8 +85,14 @@
     margin-right: 5px;
 }
 
+#select-year:hover {
+    outline: none;
+    color : rgb(32, 147, 255);
+}
+
 #select-year:focus {
     outline: none;
+    color : rgb(32, 147, 255);
 }
 
 #select-year option {
@@ -97,7 +103,7 @@
     border: none;
     margin: 0;
     padding: 5px;
-    color: inherit;
+    color: white;
     outline: none;
     font-family: inherit;
     padding: 5px;

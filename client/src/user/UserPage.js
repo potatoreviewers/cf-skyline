@@ -31,6 +31,18 @@ function UserPage() {
       .then(data => {
         if (data.status === 'OK') {
           setLoading(false);
+          
+          // get year of registrationTimeSeconds
+          const registrationTimeSeconds = data.result[0].registrationTimeSeconds;
+          const registrationDate = new Date(registrationTimeSeconds * 1000);
+          const registrationYear = registrationDate.getFullYear();
+          console.log(registrationDate);
+
+          // check selected year is not before registration year
+          if (yearInt < registrationYear) {
+            setError(true);
+          }
+
         } else {
           setLoading(false);
           setError(true);
