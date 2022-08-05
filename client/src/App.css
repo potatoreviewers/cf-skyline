@@ -1,3 +1,55 @@
 .App {
   text-align: center;
+
+    color:azure;
+    font-family:monospace;
+    font-size: 2vh;
+}
+
+.Page {
+    background: rgb(6,7,60);
+    background: radial-gradient(circle, rgba(6,7,60,1) 57%, rgba(0,3,115,1) 85%);
+    Color: azure;
+}
+
+a {
+    color: rgb(180, 255, 255);
+    
+    text-decoration: none;
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 119, 255, 0.5);
+    box-shadow: 0px 0px 10px rgba(0, 157, 193, 0.5);
+    border-radius: 45px;
+    padding: 10px;
+    margin: 5px;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+
+    color: azure;
+
+}
+
+button:hover {
+    color:rgb(32, 147, 255);
+    box-shadow: 0px 0px 25px rgba(0, 157, 193, 0.5);
+}
+
+#notfound-content {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+}
+
+#loading-content {
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
 }

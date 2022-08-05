@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import NotFound from './../NotFound'
 import Loading from './../Loading'
 import CanvasComponent from './Canvas'
+import './UserPage.css';
 
 // TODO change api url 
 // in deployment
@@ -52,7 +53,17 @@ function UserPage() {
       {loading ? 
         <Loading /> : 
         <div className="Page">
-          <CanvasComponent />
+          <div className="UserPage-info">
+            <h1> 
+              <a href={`https://codeforces.com/profile/${username}`}>{username}</a>
+              's activity in {year} 
+            </h1>
+
+
+          </div>
+          <div className="UserPage-canvas-container">
+            <CanvasComponent id="UserPage-canvas"/>
+          </div>
         </div>
       }
       </>

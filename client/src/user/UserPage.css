@@ -1,0 +1,16 @@
+.UserPage-info {
+    position: fixed; 
+    z-index: 1;
+
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    padding: 5px;
+    
+}
+
+.UserPage-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
