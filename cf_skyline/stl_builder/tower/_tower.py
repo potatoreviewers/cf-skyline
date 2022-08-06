@@ -40,9 +40,9 @@ class Tower:
 
         base = rect(
             Point(x,   y,   z),
-            Point(x+w, y,   z),
+            Point(x,   y,   z-w),
             Point(x+w, y,   z-w),
-            Point(x,   y,   z-w)
+            Point(x+w, y,   z)
         )
 
         roof = rect(
@@ -61,16 +61,16 @@ class Tower:
 
         right = rect(
             Point(x+w, y,   z),
-            Point(x+w, y+h, z),
+            Point(x+w, y, z-w),
             Point(x+w, y+h, z-w),
-            Point(x+w, y, z-w)
+            Point(x+w, y+h, z)
         )
 
         front = rect(
             Point(x,   y,   z-w),
-            Point(x+w, y,   z-w),
+            Point(x,   y+h, z-w),
             Point(x+w, y+h, z-w),
-            Point(x,   y+h, z-w)
+            Point(x+w, y,   z-w)
         )
 
         back = rect(
