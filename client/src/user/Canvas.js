@@ -16,14 +16,11 @@ const Model = ({url}) => {
     <>
       <mesh ref={ref} 
         rotation={new THREE.Euler(- Math.PI / 2, 0, 0)}
-        position={[0, 5, 0]}
       >
         <primitive object={geometry} attach="geometry" args={[0, 0, 0]} />
-        {/* <boxGeometry attach="geometry" args={[20, 40, 20]}  position={[0, 40, 0]} /> */}
         <meshNormalMaterial attach="material" />
       </mesh>
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />;
     </>
   )
 }
@@ -32,9 +29,8 @@ const Star = ({position}) => {
   return (
     <>
       <mesh position={position}>
-        <sphereGeometry attach="geometry" args={[0.35, 32, 32]} />
+        <octahedronGeometry attach="geometry" args={[0.5, 0]} />
         <meshStandardMaterial attach="material" color="azure" />
-        <pointLight position={position} intensity={200}/>
       </mesh>
     </>
   )
@@ -69,11 +65,10 @@ function CanvasComponent(props) {
     return (
     <>
       <Canvas camera={{fov: 75, position: [90, 90, 90]}}>
-        <ambientLight />
         <Model url={props.url} />
-        <OrbitControls minDistance={50} maxDistance={max_distance / 2} autoRotate={true} enablePan={false}  minPolarAngle={Math.PI / 3.2} maxPolarAngle={Math.PI / 2.2} autoRotateSpeed={3.0}/>
-
+        <OrbitControls minDistance={50} maxDistance={max_distance / 2} autoRotate={true} enablePan={false}  minPolarAngle={Math.PI / 3.2} maxPolarAngle={Math.PI / 2.2} />
         <Stars />
+        <ambientLight />
       </Canvas>
     </>
     )
