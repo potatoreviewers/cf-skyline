@@ -7,12 +7,13 @@ import './UserPage.css';
 
 // TODO change api url 
 // in deployment
-// const API_URL = 'http://localhost:8081';
+const API_URL = 'http://localhost:8080';
 
 function UserPage() {
   const { username, year } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [stlUrl, setStlUrl] = useState(`${API_URL}/stl/notfound.stl`)
 
 
   useEffect((getUsername = () => username, getYear = () => year) => {
@@ -26,27 +27,14 @@ function UserPage() {
     }
 
     // TODO: change request path
-    fetch(`https://codeforces.com/api/user.info?handles=${getUsername()}`)
+    fetch(`${API_URL}/stl`, {
+        method: 'POST',
+        body: JSON.stringify({ username: getUsername(), year: getYear() })
+    })
       .then(response => response.json())
       .then(data => {
-        if (data.status === 'OK') {
-          setLoading(false);
-          
-          // get year of registrationTimeSeconds
-          const registrationTimeSeconds = data.result[0].registrationTimeSeconds;
-          const registrationDate = new Date(registrationTimeSeconds * 1000);
-          const registrationYear = registrationDate.getFullYear();
-          console.log(registrationDate);
-
-          // check selected year is not before registration year
-          if (yearInt < registrationYear) {
-            setError(true);
-          }
-
-        } else {
-          setLoading(false);
-          setError(true);
-        }
+        setLoading(false);
+        setStlUrl(API_URL + data.stl_link);
       })
       .catch(error => {
         setLoading(false);
@@ -73,7 +61,7 @@ function UserPage() {
 
           </div>
           <div className="UserPage-canvas-container">
-            <CanvasComponent id="UserPage-canvas"/>
+            <CanvasComponent id="UserPage-canvas" url={stlUrl} />
           </div>
         </div>
       }
