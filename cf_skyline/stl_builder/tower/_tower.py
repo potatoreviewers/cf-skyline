@@ -80,5 +80,4 @@ class Tower:
             Point(x,   y+h, z)
         )
 
-        # return np.concatenate((base, roof, left, right, front, back))
         return np.concatenate((base, roof, left, right, front, back))
