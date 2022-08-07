@@ -21,7 +21,7 @@ def week_info(day: str):
     return (week, weekday)
 
 class TowerBuilder:
-    def __init__(self, username: str, base_point=Point(0, 0, 0), height=7, width=53, year=dt.datetime.now().year):
+    def __init__(self, username: str, year=dt.datetime.now().year, base_point=Point(0, 0, 0), height=7, width=53, ):
         self.towers = []
         self.base = base_point
         self.width = width

@@ -23,6 +23,11 @@ class Converter:
 
         outfile = '{}.{}'.format(username + '_' + uuid4().hex, 'scad')
         stlfile = '{}.{}'.format(username + '_' + uuid4().hex, 'stl')
+        # # create output file if it doesn't exist
+        # path = os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile)
+        # if not os.path.exists(path):
+        #     open(path, 'wb').close()
+
         scad_render_to_file(a, os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile))
         
         os.system("openscad {} -o {}".format(os.path.join(Path(__file__).resolve().parent, 'scad_files/', outfile), os.path.join(Path(__file__).resolve().parent, 'stl_unassembled/', stlfile)))

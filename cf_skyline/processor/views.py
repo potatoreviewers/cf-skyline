@@ -35,6 +35,7 @@ def STLLink(request):
             year_file_name = converter.Converter._generate_text(year)
             builder = TowerBuilder(username, year)
             tower_file_name = '{}.{}'.format('tower_' + username + '_' + uuid4().hex, 'stl')
+            print(os.path.join(MEDIA_ROOT, tower_file_name))
             builder.build(data, os.path.join(MEDIA_ROOT, tower_file_name))
             # towers script
             jsn = {
