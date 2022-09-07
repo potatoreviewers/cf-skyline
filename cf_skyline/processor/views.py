@@ -39,7 +39,7 @@ def STLLink(request):
                 tower_file_name = '{}.{}'.format('tower_' + username + '_' + uuid4().hex, 'stl')
                 builder.build(data, os.path.join(MEDIA_ROOT, tower_file_name))
                 # merge them all
-                skyline_file = Merger.merger(os.path.join(BASE_DIR, 'stl_builder\cf-base.stl'), 
+                skyline_file = Merger.merger(os.path.join(BASE_DIR, 'stl_builder/cf-base.stl'), 
                 os.path.join(MEDIA_ROOT, username_file_name), 
                 os.path.join(MEDIA_ROOT, year_file_name), 
                 os.path.join(MEDIA_ROOT, tower_file_name),
