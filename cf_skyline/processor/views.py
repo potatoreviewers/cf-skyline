@@ -53,7 +53,7 @@ def STLLink(request):
                 os.remove(os.path.join(MEDIA_ROOT, tower_file_name))
                 return Response(jsn, status=HTTP_200_OK)
             except Exception as e:
-                return Response(e, status=HTTP_417_EXPECTATION_FAILED)
+                return Response(str(e), status=HTTP_417_EXPECTATION_FAILED)
         else:
             return Response('Invalid username', status=HTTP_400_BAD_REQUEST)
     else:
