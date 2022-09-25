@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "./../NotFound";
 import Loading from "./../Loading";
-import CanvasComponent from "./Canvas";
+import CanvasComponent from "./scene/Canvas";
 import "./UserPage.css";
 
 // TODO change api url
@@ -41,7 +41,7 @@ function UserPage() {
       })
       .catch((error) => {
         setLoading(false);
-        setError(true);
+        // setError(true);
         console.log(error);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps

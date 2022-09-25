@@ -2,7 +2,7 @@ name: react
 
 on:
   push:
-    branches: [ frontend ]
+    branches: [ frontend-only ]
 
 jobs:
   build:
