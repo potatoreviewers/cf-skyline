@@ -1,5 +1,5 @@
 // import { useRef, useEffect, Suspense } from 'react';
-import { OrbitControls, SpotLight } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Stars from "./stars";
 import Model from "./model";
