@@ -17,15 +17,18 @@ function CanvasComponent(props) {
         <OrbitControls
           minDistance={50}
           maxDistance={max_distance / 2}
-        // autoRotate={true}
-        // enablePan={false}
-        // minPolarAngle={Math.PI / 3.2}
-        // maxPolarAngle={Math.PI / 2.2}
+          autoRotate={true}
+          enablePan={false}
+          minPolarAngle={Math.PI / 3.2}
+          maxPolarAngle={Math.PI / 2.2}
         />
-        <axesHelper args={[max_distance]} />
+        {/* <axesHelper args={[max_distance]} /> */}
 
 
-        <Model data={props.data} username={props.username} year={props.year} />
+        <mesh position={[-60, 4, -6.5]}>
+          <Model data={props.data} username={props.username} year={props.year} />
+          <meshBasicMaterial attach="material" color="white" />
+        </mesh>
 
         <Stars />
       </Canvas>

@@ -1,5 +1,9 @@
+import { useRef } from "react";
+import { useLoader } from "@react-three/fiber";
+import { STLLoader } from "three/examples/jsm/loaders/STLLoader"
+import STL_URL from "./cf-base.stl";
 
-const scale = 2;
+const scale = 2.4;
 
 const Tower = (props) => {
   return (
@@ -78,10 +82,18 @@ const CreateCalendar = (data, year) => {
 
 const Model = (props) => {
   let calendar = CreateCalendar(props.data, props.year);
+  const base_geometry = useLoader(STLLoader, STL_URL);
+  const ref = useRef();
 
   const towers = BuildTowers(calendar);
   return (
     <>
+      <mesh ref={ref} position={[60, -4.5, 6.5]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        geometry={base_geometry}
+      >
+        <meshNormalMaterial />
+      </mesh>
       {towers.map((tower, index) => (
         <Tower key={index} position={tower.position} height={tower.height} />
       ))}
