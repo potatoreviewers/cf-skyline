@@ -1,19 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import NotFound from "./../NotFound";
 import Loading from "./../Loading";
 import CanvasComponent from "./scene/Canvas";
 import "./UserPage.css";
 
-// TODO change api url
-// in deployment
-const API_URL = "http://localhost:8080";
 
 function UserPage() {
   const { username, year } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [stlUrl, setStlUrl] = useState(`${API_URL}/stl/notfound.stl`);
+  let activity_data = useRef;
 
   useEffect((getUsername = () => username, getYear = () => year) => {
     setLoading(true);
@@ -30,20 +27,17 @@ function UserPage() {
     }
 
     // TODO: change request path
-    fetch(`${API_URL}/stl`, {
-      method: "POST",
-      body: JSON.stringify({ username: getUsername(), year: getYear() }),
-    })
+    const url = 'https://codeforces.com/api/user.status?handle=' + username
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        if (data.status !== "OK") {
+          setError(true);
+        }
+        activity_data.current = data;
         setLoading(false);
-        setStlUrl(API_URL + data.stl_link);
-      })
-      .catch((error) => {
-        setLoading(false);
-        // setError(true);
-        console.log(error);
       });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -66,7 +60,7 @@ function UserPage() {
                 </h1>
               </div>
               <div className="UserPage-canvas-container">
-                <CanvasComponent id="UserPage-canvas" url={stlUrl} />
+                <CanvasComponent id="UserPage-canvas" data={activity_data.current} username={username} year={year} />
               </div>
             </div>
           )}
