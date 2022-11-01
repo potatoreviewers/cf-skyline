@@ -70,7 +70,7 @@ const CreateCalendar = (data, year) => {
   data.result.forEach(item => {
     const date = ToDateTime(item.creationTimeSeconds);
 
-    if (date.getFullYear() === parseInt(year)) {
+    if (date.getFullYear() === parseInt(year) && item.verdict === "OK") {
       let [week, weekday] = WeekInfo(item.creationTimeSeconds);
       calendar[week][weekday] += scale;
     }
