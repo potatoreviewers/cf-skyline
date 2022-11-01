@@ -2,6 +2,8 @@ import { useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader"
 import STL_URL from "./cf-base.stl";
+import Text from "./text";
+import { base_position } from "./Canvas";
 
 const scale = 2.4;
 
@@ -9,8 +11,7 @@ const Tower = (props) => {
   return (
     <>
       <mesh position={props.position}>
-        <boxGeometry args={[scale * 0.8, props.height, scale * 0.8]} />
-        {/* <meshBasicMaterial attach="material" color="white" /> */}
+        <boxGeometry args={[scale * 0.85, props.height, scale * 0.85]} />
         <meshNormalMaterial />
       </mesh>
     </>
@@ -85,10 +86,21 @@ const Model = (props) => {
   const base_geometry = useLoader(STLLoader, STL_URL);
   const ref = useRef();
 
+  const font_size = 5;
+  const rotation_angle = (-Math.PI / 180) * 19.5;
+
+  const username_x = 30;
+  const year_x = 120;
+  const year_y = -6.5;
+  const year_z = 20.9;
+  const base_x = -base_position[0];
+  const base_y = -base_position[1];
+  const base_z = -base_position[2];
+
   const towers = BuildTowers(calendar);
   return (
     <>
-      <mesh ref={ref} position={[60, -4.5, 6.5]}
+      <mesh ref={ref} position={[base_x, base_y, base_z]}
         rotation={[-Math.PI / 2, 0, 0]}
         geometry={base_geometry}
       >
@@ -97,6 +109,18 @@ const Model = (props) => {
       {towers.map((tower, index) => (
         <Tower key={index} position={tower.position} height={tower.height} />
       ))}
+      <Text text={props.year} size={font_size}
+        x={year_x}
+        y={year_y}
+        z={year_z}
+        rotationX={rotation_angle}
+      />
+      <Text text={props.username} size={font_size}
+        x={username_x}
+        y={year_y}
+        z={year_z}
+        rotationX={rotation_angle}
+      />
     </>
   );
 };
