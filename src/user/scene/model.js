@@ -63,7 +63,7 @@ const CreateCalendar = (data, year) => {
     return new Date(y, m, d);
   }
 
-  const kWeeksInYear = 55;
+  const kWeeksInYear = 54;
   const kDaysInWeek = 7;
   let calendar = new Array(kWeeksInYear).fill(0).map(() => new Array(kDaysInWeek).fill(0));
 
@@ -92,7 +92,7 @@ const Model = (props) => {
   const username_x = -base_position[0] * 1.15;
   const year_x = 120;
   const year_y = -6.5;
-  const year_z = 20.9;
+  const year_z = 21.8;
   const base_x = -base_position[0];
   const base_y = -base_position[1];
   const base_z = -base_position[2];

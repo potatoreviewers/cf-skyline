@@ -22,7 +22,7 @@ export default function Text({ text, size, x, y, z,
       rotation-y={rotationY}
       rotation-z={rotationZ}
     >
-      <textGeometry args={[text, { font, size: size, height: size / 5 }]} />
+      <textGeometry args={[text, { font, size: size, height: size / 4 }]} />
       <meshStandardMaterial color={"cyan"} />
       <ambientLight />
     </mesh>
