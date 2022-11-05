@@ -26,7 +26,6 @@ function UserPage() {
       setError(true);
     }
 
-    // TODO: change request path
     const url = 'https://codeforces.com/api/user.status?handle=' + username
     fetch(url)
       .then((response) => response.json())
@@ -43,14 +42,12 @@ function UserPage() {
 
   return (
     <>
-      {error ? (
-        <NotFound />
-      ) : (
-        <>
-          {loading ? (
-            <Loading />
-          ) : (
-            <div className="Page">
+      {error ?
+        (<NotFound />) :
+        (<>
+          {loading ?
+            (<Loading />) :
+            (<div className="Page">
               <div className="UserPage-info">
                 <h1>
                   <a href={`https://codeforces.com/profile/${username}`}>
@@ -63,9 +60,10 @@ function UserPage() {
                 <CanvasComponent id="UserPage-canvas" data={activity_data.current} username={username} year={year} />
               </div>
             </div>
-          )}
-        </>
-      )}
+            )
+          }
+        </>)
+      }
     </>
   );
 }

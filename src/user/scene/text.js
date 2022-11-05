@@ -1,6 +1,4 @@
-// import React from "react";
-
-import myFont from "./Ubuntu_Bold.json";
+import myFont from "./static/Ubuntu_Mono.json";
 import { extend } from "@react-three/fiber";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader";

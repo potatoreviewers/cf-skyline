@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useLoader } from "@react-three/fiber";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader"
-import STL_URL from "./cf-base.stl";
+import STL_URL from "./static/cf-base.stl";
 import Text from "./text";
 import { base_position } from "./Canvas";
 
@@ -89,7 +89,7 @@ const Model = (props) => {
   const font_size = 5;
   const rotation_angle = (-Math.PI / 180) * 19.5;
 
-  const username_x = -base_position[0] * 1.15;
+  const username_x = -base_position[0] * 1.2;
   const year_x = 120;
   const year_y = -6.5;
   const year_z = 21.8;
